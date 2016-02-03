@@ -4,6 +4,7 @@
   "main": "dist/index.js",
   "scripts": {
     "start": "gulp",
+    "build": "gulp build",
     "doc": "jsdoc src/index.js",
     "test": "gulp test",
     "semantic-release": "semantic-release pre && npm publish --access public && semantic-release post",

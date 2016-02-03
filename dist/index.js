@@ -20,12 +20,12 @@ function inquirerPromisify(options) {
     return new Promise(function (resolve) {
         // if there is only one choice, skip asking the question
         if (options.choices && options.choices.length === 1) {
-            resolve(options[0]);
+            resolve(options.choices[0]);
+        } else {
+            _inquirer2.default.prompt([options], function (answers) {
+                resolve(answers.answer);
+            });
         }
-
-        _inquirer2.default.prompt([options], function (answers) {
-            resolve(answers.answer);
-        });
     });
 }
 

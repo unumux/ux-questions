@@ -13,6 +13,9 @@ before_script:
   - npm prune
 after_success:
   - npm run semantic-release
+script:
+  - npm run test
+  - npm run build
 branches:
   except:
     - "/^v\\d+\\.\\d+\\.\\d+$/"
