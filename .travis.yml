@@ -2,20 +2,22 @@ sudo: false
 language: node_js
 cache:
   directories:
-    - node_modules
+  - node_modules
 notifications:
   email: false
+  slack:
+    secure: Yv9We8esdihJ8pJ2A414fm2Ddus56jd3Dxs2pR4gTHurOAJ44wX47pVIsn90fiXFFxLtBv+b2SgKMtCKAfBD9PlLDQ1W9l0emP6b9V+wfVYRsiasN5Najf6nYPqlewiemEk85DDtEGpP+jSFq7dbtjpuz6pmasJKTDQrjcnYwptNc71ndq15T+qsAmwSS6MABno5xaq16DbGQBFBbV7XGJ5g2UjEMu9BBEanCC9AialQ0yPpCnYZJx7+PT57SujZiT7b8TahOR447rflTVq6Ex2ki7k/6P3lYEFRSEJGe53LtIKTkOmHr3KLllrKZIiuwsLKeW+XzmErBmJ0nM4uE/SWBICairHeFKJ25pPoqwZKVizI2SDBx6KkO7NrXBKYVsGY1k+9SH+lX+38nRqLq1O5N2INV+H/IMxL2ABpV9ecIZh90WHMlWqg751Y1hMtSlgWgQ2PNjuobRS0oO938AP18gzsBuOlxgoh/2Ly8Ti5YWP0Oi3zWN3JLFJRs6sVyw/Q4dCLjeMhJ4OFdC8P/rE45ddFSJw08rjNYfQ5RbE2ddufX1OwGJSeGR7QtjiNDYgI8XZZxoHrDaHKh++SjLvBshbAHgNJPOeP50krOLMakXsXFMjr5oJb8LY9qfLNQR24sQy912auNb5BB1fV2CxgecNWaIs9JPy1sBSviQQ=
 node_js:
-  - '4'
+- '4'
 before_install:
-  - npm i -g npm@^2.0.0
+- npm i -g npm@^2.0.0
 before_script:
-  - npm prune
+- npm prune
 after_success:
-  - npm run semantic-release
+- npm run semantic-release
 script:
-  - npm run test
-  - npm run build
+- npm run test
+- npm run build
 branches:
   except:
-    - "/^v\\d+\\.\\d+\\.\\d+$/"
+  - /^v\d+\.\d+\.\d+$/
