@@ -79,21 +79,21 @@ describe("ux-questions", function() {
     describe("password", function() {
         it("should return the user's answer", function() {
             bddStdin("Test\n");
-            return question.password("Test text").then(function(ans) {
+            return question.password("Test password").then(function(ans) {
                 expect(ans).to.equal("Test");
             });
         });
 
         it("should accept a default value, and return that if enter is pressed", function() {
             bddStdin("\n");
-            return question.password("Test text", "Test").then(function(ans) {
+            return question.password("Test password", "Test").then(function(ans) {
                 expect(ans).to.equal("Test");
             });
         });
 
         it("should still return the user's choice even if a default is set", function() {
             bddStdin("Other\n");
-            return question.password("Test text", "Test").then(function(ans) {
+            return question.password("Test password", "Test").then(function(ans) {
                 expect(ans).to.equal("Other");
             });
         });
@@ -101,8 +101,51 @@ describe("ux-questions", function() {
 
     describe("list", function() {
         it("should return the first choice without interaction if only one choice is passed", function() {
-            return question.list("Test text", ["Test"]).then(function(ans) {
+            return question.list("Test list", ["Test"]).then(function(ans) {
                 expect(ans).to.equal("Test");
+            });
+        });
+
+        it("should return the user's answer", function() {
+            bddStdin("\n");
+            return question.list("Test list", ["1", "2"]).then(function(ans) {
+                expect(ans).to.equal("1");
+            });
+        });
+
+        it("should allow the user to pick an option that is not the first option", function() {
+            bddStdin(bddStdin.keys.down, bddStdin.keys.down, "\n");
+            return question.list("Test list", ["1", "2", "3"]).then(function(ans) {
+                expect(ans).to.not.equal("1");
+            });
+        });
+
+        it("should accept a default value, and return that if enter is pressed", function() {
+            bddStdin("\n");
+            return question.list("Test list", ["1", "2", "3"], 2).then(function(ans) {
+                expect(ans).to.equal("3");
+            });
+        });
+    });
+
+    describe("checkbox", function() {
+        it("should return the first choice without interaction if only one choice is passed", function() {
+            return question.list("Test checkbox", ["1"]).then(function(ans) {
+                expect(ans).to.equal("1");
+            });
+        });
+
+        it("should return the user's answer", function() {
+            bddStdin(" \n");
+            return question.checkbox("Test checkbox", ["1", "2"]).then(function(ans) {
+                expect(ans).to.eql(["1"]);
+            });
+        });
+
+        it("should allow multiple answers", function() {
+            bddStdin(" ", bddStdin.keys.down, " \n");
+            return question.checkbox("Test checkbox", ["1","2"]).then(function(ans){
+                expect(ans).to.eql(["1", "2"]);
             });
         });
     });
