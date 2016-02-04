@@ -7,6 +7,7 @@
     "build": "gulp build",
     "doc": "jsdoc src/index.js",
     "test": "gulp test",
+    "report-coverage": "cat ./coverage/lcov.info | codecov",
     "semantic-release": "semantic-release pre && npm publish --access public && semantic-release post",
     "commit": "git-cz"
   },
@@ -20,6 +21,7 @@
     "babel-register": "^6.4.3",
     "bdd-stdin": "^0.2.0",
     "chai": "^3.5.0",
+    "codecov.io": "^0.1.6",
     "commitizen": "^2.5.0",
     "cz-conventional-changelog": "^1.1.5",
     "eslint": "^1.10.3",
