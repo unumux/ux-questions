@@ -5,7 +5,7 @@
   "scripts": {
     "start": "gulp",
     "build": "gulp build",
-    "doc": "jsdoc src/index.js",
+    "doc": "jsdoc2md --template readme-template.hbs src/index.js > readme.md",
     "test": "gulp test",
     "report-coverage": "cat ./coverage/lcov.info | codecov",
     "semantic-release": "semantic-release pre && npm publish --access public && semantic-release post",
@@ -34,6 +34,7 @@
     "gulp-mocha": "^2.2.0",
     "isparta": "^4.0.0",
     "jsdoc": "^3.4.0",
+    "jsdoc-to-markdown": "^1.3.3",
     "mocha": "^2.4.5",
     "semantic-release": "^4.3.5",
     "validate-commit-msg": "^1.1.1"
