@@ -4,8 +4,8 @@ import inquirer from "inquirer";
  * This is a description of the inquirerPromisify function
  * @private
  * @function inquirerPromisify
- * @param options - options come from parameters passed to question functions
- * @returns {string | boolean | array} only answer available, default answer or selected answer(s)
+ * @param options - options come from parameters passed through question functions
+ * @returns {string | boolean | array} the only answer available, default answer or selected answer(s)
  */
 function inquirerPromisify(options) {
     options.name = "answer";
@@ -21,11 +21,17 @@ function inquirerPromisify(options) {
     });
 }
 
-/** Ask user a yes or no question
+/** Ask a yes or no question
  * @function yesNo
  * @param {string} question - "Do you like cheese?"
  * @param {boolean} defaultAns - default = true
  * @returns {promise} The user's answer {boolean} if fulfilled, or an error if rejected.
+ * @example
+ * // returns user's answer as boolean or default answer
+ * yesNo("Do you like cheese?");
+ * @example
+ * // returns user's answer as boolean or default answer
+ * yesNo("Do you hate cheese?", false);
  */
 export function yesNo(question, defaultAns = true) {
     return inquirerPromisify({
@@ -35,11 +41,14 @@ export function yesNo(question, defaultAns = true) {
     });
 }
 
-/** For questions with open ended answers
+/** Ask an open-ended question
  * @function text
  * @param {string} question - "What's your name?"
  * @param {string} defaultAns - default = null
  * @returns {promise} The user's answer {string} if fulfilled, or an error if rejected.
+ * @example
+ * // returns user's answer as string or default answer
+ * text("What is your name?");
  */
 export function text(question, defaultAns = null) {
     return inquirerPromisify({
@@ -49,11 +58,14 @@ export function text(question, defaultAns = null) {
     });
 }
 
-/** For questions with a password as an answer
+/** Ask for a password
  * @function password
  * @param {string} question - "What's your password?"
  * @param {string} defaultAns - default = null
  * @returns {promise} The user's answer {string} if fulfilled, or an error if rejected.
+ * @example
+ * //returns user's answer as string or default answer
+ * password("What is your password?");
  */
 export function password(question, defaultAns = null) {
     return inquirerPromisify({
@@ -63,13 +75,15 @@ export function password(question, defaultAns = null) {
     });
 }
 
-/**
- * For multiple choice questions that can accept one answer
+/** Ask a question with multiple choices that accepts one answer
  * @function list
  * @param {string} question - "Which of these is your favorite color? (mark all that apply)"
  * @param {array} choices - ["red", "blue", "yellow"]
  * @param {string} defaultAns - default = array[0]
  * @returns {promise} The user's answer {string} if fulfilled, or an error if rejected.
+ * @example
+ * //returns user's answer as string or default answer
+ * list("Which is your favorite color?", ["red", "blue", "yellow"]);
  */
 export function list(question, choices, defaultAns = 0) {
     return inquirerPromisify({
@@ -80,12 +94,14 @@ export function list(question, choices, defaultAns = 0) {
     });
 }
 
-/**
- * For multiple choice questions that can accept multiple answers
+/** Ask a question with multiple choices that accepts one or more answers
  * @function checkbox
  * @param {string} question - "Which one of these is your favorite color?"
  * @param {array} choices - ["red", "blue", "yellow"]
- * @returns {promise} The user's answer(s) {array of string(s)} if fulfilled, or an error if rejected.
+ * @returns {promise} The user's answer(s) {array of strings} if fulfilled, or an error if rejected.
+ * @example
+ * //returns user's answer(s) as an array of strings
+ * checkbox("Which places have you visited?", ["Columbia, SC", "Charlotte, NC", "Manchester, England"]);
  */
 export function checkbox(question, choices) {
     return inquirerPromisify({
