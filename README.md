@@ -1,11 +1,13 @@
 # UX-Questions
 
+A library for creating CLI questions using Inquirer Promisify
+
 [![travis build](https://img.shields.io/travis/unumux/ux-questions.svg?style=flat-square)](https://travis-ci.org/unumux/ux-questions)
 [![codecov coverage](https://img.shields.io/codecov/c/github/unumux/ux-questions.svg?style=flat-square)](https://codecov.io/github/unumux/ux-questions)
 [![npm version](https://img.shields.io/npm/v/@unumux/ux-questions.svg?style=flat-square)](https://www.npmjs.com/package/@unumux/ux-questions)
 
 ## yesNo(question, defaultAns) => promise
-Ask user a yes or no question
+Ask a yes or no question
 
 **Parameters**
 
@@ -21,13 +23,23 @@ Ask user a yes or no question
 | --- | --- |
 | promise | The user&#x27;s answer {boolean} if fulfilled, or an error if rejected. |
 
+**Examples**
+```js
+
+// returns user's answer as boolean or default answer
+yesNo("Do you like cheese?");
+
+// returns user's answer as boolean or default answer
+yesNo("Do you hate cheese?", false);
+```
+
 
 Source: index.js, line: 24
 
 ---
 
 ## text(question, defaultAns) => promise
-For questions with open ended answers
+Ask an open-ended question
 
 **Parameters**
 
@@ -43,13 +55,20 @@ For questions with open ended answers
 | --- | --- |
 | promise | The user&#x27;s answer {string} if fulfilled, or an error if rejected. |
 
+**Examples**
+```js
 
-Source: index.js, line: 38
+// returns user's answer as string or default answer
+text("What is your name?");
+```
+
+
+Source: index.js, line: 44
 
 ---
 
 ## password(question, defaultAns) => promise
-For questions with a password as an answer
+Ask for a password
 
 **Parameters**
 
@@ -65,13 +84,20 @@ For questions with a password as an answer
 | --- | --- |
 | promise | The user&#x27;s answer {string} if fulfilled, or an error if rejected. |
 
+**Examples**
+```js
 
-Source: index.js, line: 52
+//returns user's answer as string or default answer
+password("What is your password?");
+```
+
+
+Source: index.js, line: 61
 
 ---
 
 ## list(question, choices, defaultAns) => promise
-For multiple choice questions that can accept one answer
+Ask a question with multiple choices that accepts one answer
 
 **Parameters**
 
@@ -88,13 +114,20 @@ For multiple choice questions that can accept one answer
 | --- | --- |
 | promise | The user&#x27;s answer {string} if fulfilled, or an error if rejected. |
 
+**Examples**
+```js
 
-Source: index.js, line: 66
+//returns user's answer as string or default answer 
+list("Which is your favorite color?", ["red", "blue", "yellow"]);
+```
+
+
+Source: index.js, line: 78
 
 ---
 
 ## checkbox(question, choices) => promise
-For multiple choice questions that can accept multiple answers
+Ask a question with multiple choices that accepts one or more answers
 
 **Parameters**
 
@@ -108,10 +141,17 @@ For multiple choice questions that can accept multiple answers
 
 | Type | Description |
 | --- | --- |
-| promise | The user&#x27;s answer(s) {array of string(s)} if fulfilled, or an error if rejected. |
+| promise | The user&#x27;s answer(s) {array of strings} if fulfilled, or an error if rejected. |
+
+**Examples**
+```js
+
+//returns user's answer(s) as an array of strings
+checkbox("Which places have you visited?", ["Columbia, SC", "Charlotte, NC", "Manchester, England"]);
+```
 
 
-Source: index.js, line: 83
+Source: index.js, line: 97
 
 ---
 
